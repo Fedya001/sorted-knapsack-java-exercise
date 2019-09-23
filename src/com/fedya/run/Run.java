@@ -20,8 +20,5 @@ public class Run {
     };
 
     System.out.println(knapsack.asList());
-    List<VolumeShape> list = knapsack.asList();
-    list = new ArrayList<VolumeShape>();
-    System.out.println(knapsack.asList());
   }
 }
