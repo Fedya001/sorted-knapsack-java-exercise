@@ -3,8 +3,10 @@ package com.fedya.run;
 import com.fedya.converter.PlainShapeConverter;
 import com.fedya.exception.ConverterUnknownTypeException;
 import com.fedya.exception.KnapsackOverflowException;
+import com.fedya.exception.ReaderUnknownTypeException;
 import com.fedya.knapsack.SortedKnapsack;
 import com.fedya.shape.*;
+import com.fedya.utils.ImmutableShapeReader;
 import com.fedya.utils.Pair;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +18,7 @@ public class Run {
   public static void main(String[] args) {
     final double knapsackVolume = 15.0;
 
-    // test knapsack
+    // 1. test SortedKnapsack
     try {
       SortedKnapsack knapsack = new SortedKnapsack(knapsackVolume) {
         {
@@ -33,7 +35,7 @@ public class Run {
       e.printStackTrace();
     }
 
-    // test converter
+    // 2. test PlainShapeConverter
     PlainShapeConverter<Rectangle> rectangleConverter =
       new PlainShapeConverter<Rectangle>(new Pair<Double, Double>(0.0, 1.0));
     PlainShapeConverter<Circle> circleConverter =
@@ -47,6 +49,16 @@ public class Run {
 
       System.out.println(dummyConverter.stretchShape(new DummyPlainShape()));
     } catch (ConverterUnknownTypeException e) {
+      e.printStackTrace();
+    }
+
+    // 3. test ImmutableShapeReader
+    ImmutableShapeReader shapeReader = new ImmutableShapeReader();
+
+    try {
+      ImmutableShape shape = shapeReader.readShape();
+      System.out.println(shape);
+    } catch (ReaderUnknownTypeException e) {
       e.printStackTrace();
     }
   }
