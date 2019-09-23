@@ -1,12 +1,13 @@
 package com.fedya.shape;
 
 public class Circle extends PlainShape {
+
   public Circle(double radius) {
-    super(radius, 0.0);
+    super(0.0, radius);
   }
 
   public double getRadius() {
-    return firstDim;
+    return secondDim;
   }
 
   @Override

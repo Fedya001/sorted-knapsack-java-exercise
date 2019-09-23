@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class SortedKnapsack {
+
   public SortedKnapsack(double availableVolume) {
     this.occupiedVolume = 0.0;
     this.availableVolume = availableVolume;

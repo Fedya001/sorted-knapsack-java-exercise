@@ -1,6 +1,7 @@
 package com.fedya.shape;
 
 public abstract class ImmutableShape implements Comparable<ImmutableShape> {
+
   protected double getMetrics() {
     return metrics;
   }

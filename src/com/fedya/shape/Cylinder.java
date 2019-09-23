@@ -1,16 +1,17 @@
 package com.fedya.shape;
 
-public class Сylinder extends VolumeShape {
-  public Сylinder(double base_radius, double height) {
-    super(base_radius, height, 0.0);
+public class Cylinder extends VolumeShape {
+
+  public Cylinder(double base_radius, double height) {
+    super(0.0, base_radius, height);
   }
 
   public double getBaseRadius() {
-    return firstDim;
+    return secondDim;
   }
 
   public double getHeight() {
-    return secondDim;
+    return thirdDim;
   }
 
   @Override

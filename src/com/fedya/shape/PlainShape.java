@@ -1,7 +1,8 @@
 package com.fedya.shape;
 
 public abstract class PlainShape extends ImmutableShape {
-  PlainShape(double firstDim, double secondDim) {
+
+  public PlainShape(double firstDim, double secondDim) {
     this.firstDim = firstDim;
     this.secondDim = secondDim;
     metrics = computeMetrics();

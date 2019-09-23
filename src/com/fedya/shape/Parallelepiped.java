@@ -1,6 +1,7 @@
 package com.fedya.shape;
 
 public class Parallelepiped extends VolumeShape {
+
   public Parallelepiped(double width, double height, double depth) {
     super(width, height, depth);
   }

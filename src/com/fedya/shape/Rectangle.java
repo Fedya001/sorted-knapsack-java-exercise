@@ -1,6 +1,7 @@
 package com.fedya.shape;
 
 public class Rectangle extends PlainShape {
+
   public Rectangle(double width, double height) {
     super(width, height);
   }
