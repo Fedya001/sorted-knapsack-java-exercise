@@ -34,7 +34,7 @@ public class SortedKnapsack {
       occupiedVolume += shape.getVolume();
       isSorted = false;
     } else {
-      throw new KnapsackOverflowException("Cannot put shape into knapsack", shape);
+      throw new KnapsackOverflowException(shape);
     }
   }
 
