@@ -2,9 +2,7 @@ package com.fedya.shape;
 
 public abstract class ImmutableShape implements Comparable<ImmutableShape> {
 
-  protected double getMetrics() {
-    return metrics;
-  }
+  protected double metrics;
 
   @Override
   public String toString() {
@@ -16,7 +14,9 @@ public abstract class ImmutableShape implements Comparable<ImmutableShape> {
     return Double.compare(metrics, other.metrics);
   }
 
-  protected abstract double computeMetrics();
+  protected double getMetrics() {
+    return metrics;
+  }
 
-  protected double metrics;
+  protected abstract double computeMetrics();
 }

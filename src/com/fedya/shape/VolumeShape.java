@@ -2,6 +2,10 @@ package com.fedya.shape;
 
 public abstract class VolumeShape extends ImmutableShape {
 
+  protected double firstDim;
+  protected double secondDim;
+  protected double thirdDim;
+
   public VolumeShape(double firstDim, double secondDim, double thirdDim) {
     this.firstDim = firstDim;
     this.secondDim = secondDim;
@@ -12,8 +16,4 @@ public abstract class VolumeShape extends ImmutableShape {
   public double getVolume() {
     return getMetrics();
   }
-
-  protected double firstDim;
-  protected double secondDim;
-  protected double thirdDim;
 }

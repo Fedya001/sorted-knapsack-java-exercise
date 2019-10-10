@@ -6,6 +6,7 @@ import com.fedya.utils.Pair;
 import java.util.Random;
 
 public class PlainShapeConverter<T extends PlainShape> {
+  private Pair<Double, Double> stretchRange;
 
   public PlainShapeConverter(Pair<Double, Double> stretchRange) {
     this.stretchRange = stretchRange;
@@ -34,6 +35,4 @@ public class PlainShapeConverter<T extends PlainShape> {
       throw new ConverterUnknownTypeException(plainShape);
     }
   }
-
-  private Pair<Double, Double> stretchRange;
 }

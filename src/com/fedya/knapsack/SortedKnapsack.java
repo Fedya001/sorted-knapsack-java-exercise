@@ -8,6 +8,11 @@ import java.util.List;
 
 public class SortedKnapsack {
 
+  private double occupiedVolume;
+  private double availableVolume;
+  private List<VolumeShape> shapes;
+  private boolean isSorted;
+
   public SortedKnapsack(double availableVolume) {
     this.occupiedVolume = 0.0;
     this.availableVolume = availableVolume;
@@ -47,9 +52,4 @@ public class SortedKnapsack {
       + '/' + getKnapsackVolume() + "]\n" +
       asList();
   }
-
-  private double occupiedVolume;
-  private double availableVolume;
-  private List<VolumeShape> shapes;
-  private boolean isSorted;
 }

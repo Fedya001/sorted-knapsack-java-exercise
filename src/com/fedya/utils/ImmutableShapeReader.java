@@ -6,10 +6,11 @@ import java.util.Scanner;
 
 public class ImmutableShapeReader {
 
+  private Scanner scanner;
+
   public ImmutableShapeReader() {
     scanner = new Scanner(System.in);
   }
-
   /*
     [This is terrible solution, I know ...
     I didn't have enough time to come up with something better]
@@ -17,6 +18,7 @@ public class ImmutableShapeReader {
     1. shape type (available types: Circle, Cylinder, Rectangle, Parallelepiped)
     2. couple of doubles - shape parameters
   */
+
   public ImmutableShape readShape() throws ReaderUnknownTypeException {
     String type = scanner.next();
     switch (type) {
@@ -33,6 +35,4 @@ public class ImmutableShapeReader {
         throw new ReaderUnknownTypeException(type);
     }
   }
-
-  private Scanner scanner;
 }
