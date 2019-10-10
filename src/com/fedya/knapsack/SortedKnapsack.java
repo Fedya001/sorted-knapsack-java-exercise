@@ -48,8 +48,13 @@ public class SortedKnapsack {
 
   @Override
   public String toString() {
-    return "Knapsack[" + getOccupiedVolume()
-      + '/' + getKnapsackVolume() + "]\n" +
-      asList();
+    StringBuilder buffer = new StringBuilder("Knapsack[" + getOccupiedVolume()
+      + '/' + getKnapsackVolume() + "]\n[\n");
+
+    for (VolumeShape shape : this.asList()) {
+      buffer.append('\t').append(shape).append(",\n");
+    }
+
+    return buffer.append(']').toString();
   }
 }
