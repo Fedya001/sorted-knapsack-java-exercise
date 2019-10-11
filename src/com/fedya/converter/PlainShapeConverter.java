@@ -1,15 +1,28 @@
 package com.fedya.converter;
 
-import com.fedya.exception.ConverterUnknownTypeException;
 import com.fedya.shape.*;
 import com.fedya.utils.Pair;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.function.BiFunction;
 
-public class PlainShapeConverter<T extends PlainShape> {
+public class PlainShapeConverter {
+
   private Pair<Double, Double> stretchRange;
+  private HashMap<Class<? extends PlainShape>,
+    BiFunction<PlainShape, Double, ? extends VolumeShape>> convertRule;
 
   public PlainShapeConverter(Pair<Double, Double> stretchRange) {
     this.stretchRange = stretchRange;
+
+    this.convertRule = new HashMap<>() {{
+      put(Rectangle.class, (PlainShape rectangle, Double randomDepth) ->
+        new Parallelepiped(((Rectangle)rectangle).getWidth(), ((Rectangle)rectangle).getHeight(), randomDepth)
+      );
+      put(Circle.class, (PlainShape circle, Double randomDepth) ->
+        new Cylinder(((Circle)circle).getRadius(), randomDepth)
+      );
+    }};
   }
 
   public Pair<Double, Double> getStretchRange() {
@@ -20,19 +33,9 @@ public class PlainShapeConverter<T extends PlainShape> {
     this.stretchRange = stretchRange;
   }
 
-  // This code smells really bad, but I didn't invent anything better
-  public VolumeShape stretchShape(T plainShape) throws ConverterUnknownTypeException {
+  public VolumeShape stretchShape(PlainShape plainShape) {
     double randomDepth = new Random().nextDouble() *
       (stretchRange.second - stretchRange.first) + stretchRange.first;
-
-    if (plainShape instanceof Circle) {
-      Circle circle = (Circle) plainShape;
-      return new Cylinder(circle.getRadius(), randomDepth);
-    } else if (plainShape instanceof Rectangle) {
-      Rectangle rectangle = (Rectangle) plainShape;
-      return new Parallelepiped(rectangle.getWidth(), rectangle.getHeight(), randomDepth);
-    } else {
-      throw new ConverterUnknownTypeException(plainShape);
-    }
+    return convertRule.get(plainShape.getClass()).apply(plainShape, randomDepth);
   }
 }
