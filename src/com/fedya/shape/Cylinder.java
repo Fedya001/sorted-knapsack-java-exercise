@@ -16,8 +16,8 @@ public class Cylinder extends VolumeShape {
 
   @Override
   public String toString() {
-    return "Cylinder { base_radius = " + DECIMAL_FORMAT.format(getBaseRadius()) +
-      ", height = " + DECIMAL_FORMAT.format(getHeight()) +  ", " + super.toString() + "}";
+    return "Cylinder {base_radius = " + DECIMAL_FORMAT.format(getBaseRadius()) +
+      ", height = " + DECIMAL_FORMAT.format(getHeight()) + ", " + super.toString() + "}";
   }
 
   @Override

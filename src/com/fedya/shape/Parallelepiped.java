@@ -20,7 +20,7 @@ public class Parallelepiped extends VolumeShape {
 
   @Override
   public String toString() {
-    return "Parallelepiped { width = " + DECIMAL_FORMAT.format(getWidth()) +
+    return "Parallelepiped {width = " + DECIMAL_FORMAT.format(getWidth()) +
       ", height = " + DECIMAL_FORMAT.format(getHeight()) +
       ", depth = " + DECIMAL_FORMAT.format(getDepth()) + ", " + super.toString() + "}";
   }

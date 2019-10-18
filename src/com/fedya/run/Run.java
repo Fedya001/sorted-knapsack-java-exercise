@@ -13,6 +13,6 @@ import javax.swing.JPanel;
 public class Run {
 
   public static void main(String[] args) {
-    GUIManager guiManager = new GUIManager("Knapsack game", 750, 600);
+    GUIManager guiManager = new GUIManager("Knapsack game", 900, 640);
   }
 }
