@@ -1,17 +1,10 @@
 package com.fedya.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JSeparator;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 
 public class ButtonsSidebar {
 
