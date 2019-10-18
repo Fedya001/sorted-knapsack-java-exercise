@@ -16,8 +16,9 @@ public class Rectangle extends PlainShape {
 
   @Override
   public String toString() {
-    return "Rectangle { width = " + Double.toString(getWidth()) +
-      ", height = " + Double.toString(getHeight()) + ", " + super.toString() + "}";
+    return "Rectangle { width = " + DECIMAL_FORMAT.format(Double.toString(getWidth())) +
+      ", height = " + DECIMAL_FORMAT.format(Double.toString(getHeight()))
+      + ", " + super.toString() + "}";
   }
 
   @Override
