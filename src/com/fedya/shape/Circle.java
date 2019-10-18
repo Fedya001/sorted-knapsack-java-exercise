@@ -12,7 +12,7 @@ public class Circle extends PlainShape {
 
   @Override
   public String toString() {
-    return "Circle { radius = " + DECIMAL_FORMAT.format(Double.toString(getRadius())) + ", " + super.toString() + "}";
+    return "Circle { radius = " + DECIMAL_FORMAT.format(getRadius()) + ", " + super.toString() + "}";
   }
 
   @Override

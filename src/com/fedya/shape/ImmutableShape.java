@@ -9,7 +9,7 @@ public abstract class ImmutableShape implements Comparable<ImmutableShape> {
 
   @Override
   public String toString() {
-    return "norm = " + DECIMAL_FORMAT.format(Double.toString(metrics));
+    return "norm = " + DECIMAL_FORMAT.format(metrics);
   }
 
   @Override
