@@ -2,6 +2,7 @@ package com.fedya.gui;
 
 import com.fedya.shape.Circle;
 import com.fedya.shape.ImmutableShape;
+import com.fedya.utils.Logger;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -15,7 +16,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -49,7 +52,11 @@ public class GUIManager {
 
   private static final Font DEFAULT_APP_CAPITAL_FONT = new Font("TimesRoman", Font.BOLD, 30);
   private static final Font DEFAULT_APP_REGULAR_FONT = new Font("TimesRoman", Font.BOLD, 16);
+
   private static final Color DEFAULT_APP_GREEN_COLOR = new Color(7, 200, 10);
+  private static final Color DEFAULT_APP_RED_COLOR = new Color(200, 50, 15);
+
+  private boolean appTheme;
 
   public GUIManager(String frameName, int width, int height) {
     SwingUtilities.invokeLater(new Runnable() {
@@ -66,6 +73,8 @@ public class GUIManager {
     gameFrame.setSize(width, height);
     gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     gameFrame.setVisible(true);
+
+    appTheme = true;
   }
 
   private void SetupComponents() {
@@ -88,7 +97,7 @@ public class GUIManager {
     addShapeButton = new JButton("Add shape");
     removeShapeButton = new JButton("Remove shape");
     clearLogButton = new JButton("Clear log");
-    switchThemeButton = new JButton("Switch theme");
+    switchThemeButton = new JButton("Switch app theme");
     setupButtonsListeners();
 
     actionSidebar = new ButtonsSidebar(2, 2, 20, 20,
@@ -134,36 +143,39 @@ public class GUIManager {
     mainPanel.add(stateScrollPane);
     mainPanel.add(Box.createRigidArea(new Dimension(30, 30)));
 
+    gameFrame.getContentPane().setBackground(Color.GRAY);
     gameFrame.getContentPane().add(mainPanel);
   }
 
   private void setupButtonsListeners() {
-    addShapeButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        logModel.addElement("add");
-      }
+    addShapeButton.addActionListener(event -> {
+      logModel.addElement(Logger.log("Add"));
     });
 
-    removeShapeButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        logModel.addElement("remove");
-      }
+    removeShapeButton.addActionListener(event -> {
+      logModel.addElement(Logger.log("Remove"));
     });
 
-    clearLogButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        logModel.addElement("clear log");
-      }
+    clearLogButton.addActionListener(event -> {
+      logModel.clear();
     });
 
-    switchThemeButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        logModel.addElement("switch theme");
-      }
+    switchThemeButton.addActionListener(event -> {
+      logModel.addElement(Logger.log("Switched app theme"));
+      setAppTheme();
     });
+  }
+
+  private void setAppTheme() {
+    if (appTheme) {
+      mainLabel.setForeground(DEFAULT_APP_RED_COLOR);
+      logLabel.setForeground(DEFAULT_APP_RED_COLOR);
+      gameFrame.getContentPane().setBackground(Color.BLACK);
+    } else {
+      mainLabel.setForeground(DEFAULT_APP_GREEN_COLOR);
+      logLabel.setForeground(DEFAULT_APP_GREEN_COLOR);
+      gameFrame.getContentPane().setBackground(Color.GRAY);
+    }
+    appTheme = !appTheme;
   }
 }
