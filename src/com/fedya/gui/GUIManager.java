@@ -87,8 +87,8 @@ public class GUIManager {
 
     addShapeButton = new JButton("Add shape");
     removeShapeButton = new JButton("Remove shape");
-    clearLogButton = new JButton("Clear knapsack");
-    switchThemeButton = new JButton("Generate knapsack");
+    clearLogButton = new JButton("Clear log");
+    switchThemeButton = new JButton("Switch theme");
     setupButtonsListeners();
 
     actionSidebar = new ButtonsSidebar(2, 2, 20, 20,
