@@ -86,12 +86,12 @@ public class AddShapeDialog {
         ImmutableShape shape = GetInputShape();
         if (shape instanceof PlainShape) {
           VolumeShape converted = shapeConverter.stretchShape((PlainShape) shape);
+          knapsack.add(converted);
           logModel.addElement(Logger.log("Converted " + shape + " to " + converted));
           logModel.addElement(Logger.log("Add " + shape));
-          knapsack.add(converted);
         } else {
-          logModel.addElement(Logger.log("Add " + shape));
           knapsack.add((VolumeShape) shape);
+          logModel.addElement(Logger.log("Add " + shape));
         }
       } catch (NumberFormatException ex) {
         JOptionPane.showMessageDialog(dialog, "Cannot parse input data:\n " + ex.getMessage(),
