@@ -2,6 +2,7 @@ package com.fedya.knapsack;
 
 import com.fedya.exception.KnapsackOverflowException;
 import com.fedya.shape.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -63,6 +64,6 @@ public class SortedKnapsack {
 
   public String getHtmlVolumeDescription() {
     return "<html>Available volume = " + availableVolume +
-      "<br/>Occupied volume = " + occupiedVolume + "</html>";
+      "<br/>Occupied volume = " + new DecimalFormat("#.##").format(occupiedVolume) + "</html>";
   }
 }

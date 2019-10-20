@@ -141,6 +141,7 @@ public class GUIManager {
       ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS
     );
     stateScrollPane.setViewportView(knapsackState);
+    stateScrollPane.setMinimumSize(new Dimension(400, 600));
 
     mainPanel.add(stateScrollPane);
     mainPanel.add(Box.createRigidArea(new Dimension(30, 30)));
