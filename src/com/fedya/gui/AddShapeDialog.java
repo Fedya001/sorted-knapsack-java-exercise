@@ -94,11 +94,11 @@ public class AddShapeDialog {
           knapsack.add((VolumeShape) shape);
         }
       } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(dialog, "Cannot parse input data",
+        JOptionPane.showMessageDialog(dialog, "Cannot parse input data:\n " + ex.getMessage(),
           "Error", JOptionPane.INFORMATION_MESSAGE);
       } catch (KnapsackOverflowException ex) {
         JOptionPane.showMessageDialog(dialog,
-          "Knapsack overflowed.\nConsider decreasing volume",
+          "Knapsack overflowed.\nConsider decreasing volume [" + ex.getMessage() + "]",
           "Error", JOptionPane.INFORMATION_MESSAGE);
       } finally {
         dialog.dispose();

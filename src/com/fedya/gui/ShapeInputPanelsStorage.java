@@ -24,6 +24,8 @@ public class ShapeInputPanelsStorage {
   private static JTextField parallelepipedHeightInputField;
   private static JTextField parallelepipedDepthInputField;
 
+  private static final String POSITIVE_WARNING_MESSAGE = "parameters must be positive";
+
   public static final JPanel CIRCLE_INPUT_PANEL = new JPanel() {
     {
       circleRadiusInputField = new JTextField();
@@ -36,6 +38,11 @@ public class ShapeInputPanelsStorage {
 
   public static Circle buildCircle() throws NumberFormatException {
     double radius = Double.parseDouble(circleRadiusInputField.getText());
+    if (radius <= 0) {
+      throw new NumberFormatException(POSITIVE_WARNING_MESSAGE);
+    }
+
+    circleRadiusInputField.setText("");
     return new Circle(radius);
   }
 
@@ -56,7 +63,12 @@ public class ShapeInputPanelsStorage {
   public static Cylinder buildCylinder() throws NumberFormatException {
     double radius = Double.parseDouble(cylinderRadiusInputField.getText());
     double height = Double.parseDouble(cylinderHeightInputField.getText());
+    if (radius <= 0 || height <= 0) {
+      throw new NumberFormatException(POSITIVE_WARNING_MESSAGE);
+    }
 
+    cylinderRadiusInputField.setText("");
+    cylinderHeightInputField.setText("");
     return new Cylinder(radius, height);
   }
 
@@ -77,7 +89,12 @@ public class ShapeInputPanelsStorage {
   public static Rectangle buildRectangle() throws NumberFormatException {
     double width = Double.parseDouble(rectangleWidthInputField.getText());
     double height = Double.parseDouble(rectangleHeightInputField.getText());
+    if (width <= 0 || height <= 0) {
+      throw new NumberFormatException(POSITIVE_WARNING_MESSAGE);
+    }
 
+    rectangleWidthInputField.setText("");
+    rectangleHeightInputField.setText("");
     return new Rectangle(width, height);
   }
 
@@ -103,7 +120,13 @@ public class ShapeInputPanelsStorage {
     double width = Double.parseDouble(parallelepipedWidthInputField.getText());
     double height = Double.parseDouble(parallelepipedHeightInputField.getText());
     double depth = Double.parseDouble(parallelepipedDepthInputField.getText());
+    if (width <= 0 || height <= 0 || depth <= 0) {
+      throw new NumberFormatException(POSITIVE_WARNING_MESSAGE);
+    }
 
+    parallelepipedWidthInputField.setText("");
+    parallelepipedHeightInputField.setText("");
+    parallelepipedDepthInputField.setText("");
     return new Parallelepiped(width, height, depth);
   }
 

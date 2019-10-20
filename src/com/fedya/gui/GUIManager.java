@@ -34,10 +34,10 @@ public class GUIManager {
   private DefaultListModel<ImmutableShape> knapsackStateModel;
   private ButtonsSidebar actionSidebar;
 
-  JButton addShapeButton;
-  JButton removeShapeButton;
-  JButton clearLogButton;
-  JButton switchThemeButton;
+  private JButton addShapeButton;
+  private JButton removeShapeButton;
+  private JButton clearLogButton;
+  private JButton switchThemeButton;
 
   public static final Font DEFAULT_APP_CAPITAL_FONT = new Font("TimesRoman", Font.BOLD, 30);
   public static final Font DEFAULT_APP_REGULAR_FONT = new Font("TimesRoman", Font.BOLD, 16);
