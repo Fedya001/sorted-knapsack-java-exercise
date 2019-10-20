@@ -1,6 +1,6 @@
 package com.fedya.utils;
 
-import com.fedya.exception.GeneratorUnknownType;
+import com.fedya.exception.UnknownShapeType;
 import com.fedya.shape.Circle;
 import com.fedya.shape.Cylinder;
 import com.fedya.shape.ImmutableShape;
@@ -34,7 +34,7 @@ public class ShapeGenerator {
         return new Parallelepiped(getBoundedRandomValue(),
           getBoundedRandomValue(), getBoundedRandomValue());
       default:
-        throw new GeneratorUnknownType(type);
+        throw new UnknownShapeType(type, "ShapeGenerator");
     }
   }
 

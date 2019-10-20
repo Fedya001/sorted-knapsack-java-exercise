@@ -1,12 +1,13 @@
 package com.fedya.gui;
 
-import com.fedya.shape.Circle;
+import com.fedya.knapsack.SortedKnapsack;
 import com.fedya.shape.ImmutableShape;
 import com.fedya.utils.Logger;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -20,6 +21,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
 public class GUIManager {
+
+  private SortedKnapsack knapsack;
 
   private JLabel mainLabel;
   private JFrame gameFrame;
@@ -35,15 +38,16 @@ public class GUIManager {
   JButton clearLogButton;
   JButton switchThemeButton;
 
-  private static final Font DEFAULT_APP_CAPITAL_FONT = new Font("TimesRoman", Font.BOLD, 30);
-  private static final Font DEFAULT_APP_REGULAR_FONT = new Font("TimesRoman", Font.BOLD, 16);
+  public static final Font DEFAULT_APP_CAPITAL_FONT = new Font("TimesRoman", Font.BOLD, 30);
+  public static final Font DEFAULT_APP_REGULAR_FONT = new Font("TimesRoman", Font.BOLD, 16);
 
-  private static final Color DEFAULT_APP_GREEN_COLOR = new Color(7, 200, 10);
-  private static final Color DEFAULT_APP_RED_COLOR = new Color(200, 50, 15);
+  public static final Color DEFAULT_APP_GREEN_COLOR = new Color(7, 200, 10);
+  public static final Color DEFAULT_APP_RED_COLOR = new Color(200, 50, 15);
 
   private boolean appTheme;
 
-  public GUIManager(String frameName, int width, int height) {
+  public GUIManager(SortedKnapsack knapsack, String frameName, int width, int height) {
+    this.knapsack = knapsack;
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {
@@ -58,7 +62,7 @@ public class GUIManager {
     gameFrame.setSize(width, height);
     gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     gameFrame.setVisible(true);
-
+;
     appTheme = true;
   }
 
@@ -66,8 +70,8 @@ public class GUIManager {
     gameFrame.setLayout(new BoxLayout(gameFrame.getContentPane(), BoxLayout.Y_AXIS));
 
     mainLabel = new JLabel("Knapsack game 0.1 (beta)");
-    mainLabel.setFont(DEFAULT_APP_CAPITAL_FONT);
-    mainLabel.setForeground(DEFAULT_APP_GREEN_COLOR);
+    mainLabel.setFont(GUIManager.DEFAULT_APP_CAPITAL_FONT);
+    mainLabel.setForeground(GUIManager.DEFAULT_APP_GREEN_COLOR);
     mainLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     gameFrame.getContentPane().add(mainLabel);
 
@@ -94,13 +98,13 @@ public class GUIManager {
 
     // 2. Log
     logLabel = new JLabel("Log");
-    logLabel.setFont(DEFAULT_APP_CAPITAL_FONT);
-    logLabel.setForeground(DEFAULT_APP_GREEN_COLOR);
+    logLabel.setFont(GUIManager.DEFAULT_APP_CAPITAL_FONT);
+    logLabel.setForeground(GUIManager.DEFAULT_APP_GREEN_COLOR);
     logLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
     logModel = new DefaultListModel<String>();
     JList<String> logList = new JList<String>(logModel);
-    logList.setFont(DEFAULT_APP_REGULAR_FONT);
+    logList.setFont(GUIManager.DEFAULT_APP_REGULAR_FONT);
     JScrollPane logScrollPane = new JScrollPane(
       ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
       ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED
@@ -117,14 +121,13 @@ public class GUIManager {
     // 3. Knapsack state
     knapsackStateModel = new DefaultListModel<ImmutableShape>();
     JList<ImmutableShape> knapsackState = new JList<ImmutableShape>(knapsackStateModel);
-    knapsackState.setFont(DEFAULT_APP_REGULAR_FONT);
+    knapsackState.setFont(GUIManager.DEFAULT_APP_REGULAR_FONT);
     JScrollPane stateScrollPane = new JScrollPane(
       ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
       ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS
     );
     stateScrollPane.setViewportView(knapsackState);
 
-    knapsackStateModel.addElement(new Circle(4));
     mainPanel.add(stateScrollPane);
     mainPanel.add(Box.createRigidArea(new Dimension(30, 30)));
 
@@ -134,11 +137,14 @@ public class GUIManager {
 
   private void setupButtonsListeners() {
     addShapeButton.addActionListener(event -> {
-      logModel.addElement(Logger.log("Add"));
+      new AddShapeDialog(knapsack, logModel, gameFrame);
+      updateState();
     });
 
     removeShapeButton.addActionListener(event -> {
       logModel.addElement(Logger.log("Remove"));
+      // check selected items in list
+      updateState();
     });
 
     clearLogButton.addActionListener(event -> {
@@ -153,14 +159,19 @@ public class GUIManager {
 
   private void setAppTheme() {
     if (appTheme) {
-      mainLabel.setForeground(DEFAULT_APP_RED_COLOR);
-      logLabel.setForeground(DEFAULT_APP_RED_COLOR);
+      mainLabel.setForeground(GUIManager.DEFAULT_APP_RED_COLOR);
+      logLabel.setForeground(GUIManager.DEFAULT_APP_RED_COLOR);
       gameFrame.getContentPane().setBackground(Color.BLACK);
     } else {
-      mainLabel.setForeground(DEFAULT_APP_GREEN_COLOR);
-      logLabel.setForeground(DEFAULT_APP_GREEN_COLOR);
+      mainLabel.setForeground(GUIManager.DEFAULT_APP_GREEN_COLOR);
+      logLabel.setForeground(GUIManager.DEFAULT_APP_GREEN_COLOR);
       gameFrame.getContentPane().setBackground(Color.GRAY);
     }
     appTheme = !appTheme;
+  }
+
+  private void updateState() {
+    knapsackStateModel.clear();
+    knapsackStateModel.addAll(knapsack.asList());
   }
 }

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class ButtonsSidebar {
 
-  // Design principle: favour composition over inheritance
+  // Design principle: favour composition over inheritance :)
   private JPanel sidebarPanel;
 
   ButtonsSidebar(int rows, int cols, int hgap, int vgap, JButton... sidebarButtons) {
