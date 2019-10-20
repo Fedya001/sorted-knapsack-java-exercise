@@ -1,6 +1,7 @@
 package com.fedya.gui;
 
 import com.fedya.shape.*;
+import com.fedya.utils.WindowToolkit;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.TextField;
@@ -46,6 +47,7 @@ public class ShapeInputPanelsStorage {
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       addTextAreaWithLabel(this, "Radius:",
         GUIManager.DEFAULT_APP_REGULAR_FONT, cylinderRadiusInputField);
+      WindowToolkit.separate(this);
       addTextAreaWithLabel(this, "Height:",
         GUIManager.DEFAULT_APP_REGULAR_FONT, cylinderHeightInputField);
     }
@@ -66,6 +68,7 @@ public class ShapeInputPanelsStorage {
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       addTextAreaWithLabel(this, "Width:",
         GUIManager.DEFAULT_APP_REGULAR_FONT, rectangleWidthInputField);
+      WindowToolkit.separate(this);
       addTextAreaWithLabel(this, "Height:",
         GUIManager.DEFAULT_APP_REGULAR_FONT, rectangleHeightInputField);
     }
@@ -87,8 +90,10 @@ public class ShapeInputPanelsStorage {
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       addTextAreaWithLabel(this, "Width:",
         GUIManager.DEFAULT_APP_REGULAR_FONT, parallelepipedWidthInputField);
+      WindowToolkit.separate(this);
       addTextAreaWithLabel(this, "Height:",
         GUIManager.DEFAULT_APP_REGULAR_FONT, parallelepipedHeightInputField);
+      WindowToolkit.separate(this);
       addTextAreaWithLabel(this, "Depth:",
         GUIManager.DEFAULT_APP_REGULAR_FONT, parallelepipedDepthInputField);
     }
@@ -110,6 +115,7 @@ public class ShapeInputPanelsStorage {
     JLabel label = new JLabel(labelText);
     label.setFont(font);
     pairedPanel.add(label);
+    WindowToolkit.separate(pairedPanel);
 
     textField.setFont(font);
     textField.setMaximumSize(new Dimension(100, 30));

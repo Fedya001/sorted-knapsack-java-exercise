@@ -3,6 +3,7 @@ package com.fedya.gui;
 import com.fedya.knapsack.SortedKnapsack;
 import com.fedya.shape.ImmutableShape;
 import com.fedya.utils.Logger;
+import com.fedya.utils.WindowToolkit;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -63,6 +64,7 @@ public class GUIManager {
     gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     gameFrame.setVisible(true);
 
+    WindowToolkit.MoveToCenter(gameFrame);
     appTheme = true;
   }
 

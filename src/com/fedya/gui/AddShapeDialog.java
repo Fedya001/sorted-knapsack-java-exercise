@@ -12,6 +12,7 @@ import com.fedya.shape.ShapeType;
 import com.fedya.shape.VolumeShape;
 import com.fedya.utils.Logger;
 import com.fedya.utils.Pair;
+import com.fedya.utils.WindowToolkit;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.BoxLayout;
@@ -45,6 +46,7 @@ public class AddShapeDialog {
     dialog = new JDialog(parent, "Add shape dialog", true);
     dialog.setPreferredSize(new Dimension(400, 250));
     setupComponents();
+    WindowToolkit.MoveToCenter(dialog);
     dialog.pack();
     dialog.setResizable(false);
     dialog.setVisible(true);
@@ -60,7 +62,9 @@ public class AddShapeDialog {
         .show(inputPanel, ShapeType.values()[pickShapeBox.getSelectedIndex()].toString());
     });
     pickShapeBox.setMaximumSize(new Dimension(300, 30));
+    WindowToolkit.separate(mainDialogPanel);
     mainDialogPanel.add(pickShapeBox);
+    WindowToolkit.separate(mainDialogPanel);
 
     inputPanel = new JPanel(new CardLayout());
 
@@ -74,6 +78,7 @@ public class AddShapeDialog {
       ShapeType.PARALLELEPIPED.name());
 
     mainDialogPanel.add(inputPanel);
+    WindowToolkit.separate(mainDialogPanel);
 
     submitButton = new JButton("Submit");
     submitButton.addActionListener(event -> {
@@ -101,6 +106,7 @@ public class AddShapeDialog {
     });
 
     mainDialogPanel.add(submitButton);
+    WindowToolkit.separate(mainDialogPanel);
 
     dialog.add(mainDialogPanel);
   }
