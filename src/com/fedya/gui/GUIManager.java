@@ -62,7 +62,7 @@ public class GUIManager {
     gameFrame.setSize(width, height);
     gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     gameFrame.setVisible(true);
-;
+
     appTheme = true;
   }
 
