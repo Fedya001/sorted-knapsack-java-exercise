@@ -2,8 +2,8 @@
 Basics of Java. Swing app
 
 App screens:
-![RedScreen](screen_red.png)
-![GreenScreen](screen_green.png)
+![RedScreen](screens/screen_red.png)
+![GreenScreen](screens/screen_green.png)
 
 In case you can't add shape to knapsack, info message appears:
-![OverflowScreen](overflow.png)
+![OverflowScreen](screens/overflow.png)
