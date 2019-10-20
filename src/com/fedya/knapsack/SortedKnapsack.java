@@ -37,6 +37,9 @@ public class SortedKnapsack {
       throw new KnapsackOverflowException(shape);
     }
   }
+  public void removeShape(VolumeShape shape) {
+    shapes.remove(shape);
+  }
 
   public List<VolumeShape> asList() {
     if (!isSorted) {

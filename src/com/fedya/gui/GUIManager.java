@@ -2,13 +2,14 @@ package com.fedya.gui;
 
 import com.fedya.knapsack.SortedKnapsack;
 import com.fedya.shape.ImmutableShape;
+import com.fedya.shape.VolumeShape;
 import com.fedya.utils.Logger;
 import com.fedya.utils.WindowToolkit;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
+import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -31,7 +32,9 @@ public class GUIManager {
 
   private JLabel logLabel;
   private DefaultListModel<String> logModel;
-  private DefaultListModel<ImmutableShape> knapsackStateModel;
+
+  private JList<VolumeShape> knapsackState;
+  private DefaultListModel<VolumeShape> knapsackStateModel;
   private ButtonsSidebar actionSidebar;
 
   private JButton addShapeButton;
@@ -121,8 +124,8 @@ public class GUIManager {
     mainPanel.add(Box.createRigidArea(new Dimension(30, 30)));
 
     // 3. Knapsack state
-    knapsackStateModel = new DefaultListModel<ImmutableShape>();
-    JList<ImmutableShape> knapsackState = new JList<ImmutableShape>(knapsackStateModel);
+    knapsackStateModel = new DefaultListModel<VolumeShape>();
+    knapsackState = new JList<VolumeShape>(knapsackStateModel);
     knapsackState.setFont(GUIManager.DEFAULT_APP_REGULAR_FONT);
     JScrollPane stateScrollPane = new JScrollPane(
       ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -144,8 +147,13 @@ public class GUIManager {
     });
 
     removeShapeButton.addActionListener(event -> {
-      logModel.addElement(Logger.log("Remove"));
-      // check selected items in list
+      List<VolumeShape> selectedShapes = knapsackState.getSelectedValuesList();
+
+      for (VolumeShape shape : selectedShapes) {
+        knapsack.removeShape(shape);
+        logModel.addElement(Logger.log("Remove " + shape));
+      }
+
       updateState();
     });
 
