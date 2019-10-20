@@ -1,7 +1,6 @@
 package com.fedya.gui;
 
 import com.fedya.knapsack.SortedKnapsack;
-import com.fedya.shape.ImmutableShape;
 import com.fedya.shape.VolumeShape;
 import com.fedya.utils.Logger;
 import com.fedya.utils.WindowToolkit;
@@ -36,6 +35,8 @@ public class GUIManager {
   private JList<VolumeShape> knapsackState;
   private DefaultListModel<VolumeShape> knapsackStateModel;
   private ButtonsSidebar actionSidebar;
+
+  private JLabel knapsackVolumeLabel;
 
   private JButton addShapeButton;
   private JButton removeShapeButton;
@@ -84,9 +85,17 @@ public class GUIManager {
     mainPanel = new JPanel();
     mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
-    // 1. Buttons sidebar
+    // 1. Buttons sidebar and knapsack state
     JPanel leftSubpanel = new JPanel();
     leftSubpanel.setLayout(new BoxLayout(leftSubpanel, BoxLayout.Y_AXIS));
+
+    knapsackVolumeLabel = new JLabel(knapsack.getHtmlVolumeDescription());
+    knapsackVolumeLabel.setFont(GUIManager.DEFAULT_APP_REGULAR_FONT);
+    knapsackVolumeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    knapsackVolumeLabel.setMaximumSize(new Dimension(250, 60));
+
+    leftSubpanel.add(knapsackVolumeLabel);
+    leftSubpanel.add(Box.createGlue());
 
     addShapeButton = new JButton("Add shape");
     removeShapeButton = new JButton("Remove shape");
@@ -183,5 +192,6 @@ public class GUIManager {
   private void updateState() {
     knapsackStateModel.clear();
     knapsackStateModel.addAll(knapsack.asList());
+    knapsackVolumeLabel.setText(knapsack.getHtmlVolumeDescription());
   }
 }

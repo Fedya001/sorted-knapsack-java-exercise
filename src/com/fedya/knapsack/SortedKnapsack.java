@@ -60,4 +60,9 @@ public class SortedKnapsack {
 
     return buffer.append(']').toString();
   }
+
+  public String getHtmlVolumeDescription() {
+    return "<html>Available volume = " + availableVolume +
+      "<br/>Occupied volume = " + occupiedVolume + "</html>";
+  }
 }
