@@ -52,7 +52,7 @@ public class VolumeInputDialog extends JDialog {
     this.add(mainDialogPanel);
     this.pack();
     this.setResizable(false);
-    WindowToolkit.MoveToCenter(this);
+    WindowToolkit.moveToCenter(this);
     this.setModal(true);
     this.setVisible(true);
   }

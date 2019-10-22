@@ -46,7 +46,7 @@ public class AddShapeDialog {
     dialog = new JDialog(parent, "Add shape dialog", true);
     dialog.setPreferredSize(new Dimension(400, 250));
     setupComponents();
-    WindowToolkit.MoveToCenter(dialog);
+    WindowToolkit.moveToCenter(dialog);
     dialog.pack();
     dialog.setResizable(false);
     dialog.setVisible(true);

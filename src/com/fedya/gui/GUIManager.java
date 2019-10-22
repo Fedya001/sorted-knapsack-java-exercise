@@ -68,7 +68,7 @@ public class GUIManager {
     gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     gameFrame.setVisible(true);
 
-    WindowToolkit.MoveToCenter(gameFrame);
+    WindowToolkit.moveToCenter(gameFrame);
     appTheme = true;
   }
 

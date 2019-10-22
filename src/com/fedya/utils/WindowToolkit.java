@@ -7,7 +7,7 @@ import javax.swing.Box;
 import javax.swing.JPanel;
 
 public class WindowToolkit {
-  public static void MoveToCenter(Window window) {
+  public static void moveToCenter(Window window) {
     // Move to the center
     Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();
     window.setLocation(screenDim.width/ 2 - window.getSize().width / 2,
