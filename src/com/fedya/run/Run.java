@@ -1,48 +1,16 @@
 package com.fedya.run;
 
-import com.fedya.converter.PlainShapeConverter;
-import com.fedya.exception.KnapsackOverflowException;
-import com.fedya.exception.ReaderUnknownTypeException;
+import com.fedya.gui.GUIManager;
+import com.fedya.gui.VolumeInputDialog;
 import com.fedya.knapsack.SortedKnapsack;
-import com.fedya.shape.*;
-import com.fedya.utils.ImmutableShapeReader;
-import com.fedya.utils.Pair;
 
 public class Run {
 
   public static void main(String[] args) {
-    final double knapsackVolume = 15.0;
+    // input knapsack availableVolume
+    VolumeInputDialog dialog = new VolumeInputDialog();
+    SortedKnapsack knapsack = new SortedKnapsack(dialog.getVolume());
 
-    // 1. test SortedKnapsack
-    try {
-      SortedKnapsack knapsack = new SortedKnapsack(knapsackVolume) {
-        {
-          add(new Parallelepiped(1.0, 2.0, 3.0));
-          add(new Cylinder(1.0, 2.0));
-          add(new Cylinder(0.5, 3.0));
-        }
-      };
-
-      System.out.println(knapsack);
-      knapsack.add(new Parallelepiped(1.0, 1.0, 1.0));
-      System.out.println(knapsack);
-    } catch (KnapsackOverflowException e) {
-      e.printStackTrace();
-    }
-
-    // 2. test PlainShapeConverter
-    PlainShapeConverter convecter = new PlainShapeConverter(new Pair<Double, Double>(0.0, 1.0));
-    System.out.println((Parallelepiped) convecter.stretchShape(new Rectangle(4.0, 1.5)));
-    System.out.println((Cylinder) convecter.stretchShape(new Circle(5.0)));
-
-    // 3. test ImmutableShapeReader
-    ImmutableShapeReader shapeReader = new ImmutableShapeReader();
-
-    try {
-      ImmutableShape shape = shapeReader.readShape();
-      System.out.println(shape);
-    } catch (ReaderUnknownTypeException e) {
-      e.printStackTrace();
-    }
+    GUIManager guiManager = new GUIManager(knapsack, "Knapsack game", 900, 640);
   }
 }

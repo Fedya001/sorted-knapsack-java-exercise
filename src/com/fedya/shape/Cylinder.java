@@ -2,8 +2,8 @@ package com.fedya.shape;
 
 public class Cylinder extends VolumeShape {
 
-  public Cylinder(double base_radius, double height) {
-    super(0.0, base_radius, height);
+  public Cylinder(double baseRadius, double height) {
+    super(0.0, baseRadius, height);
   }
 
   public double getBaseRadius() {
@@ -16,8 +16,8 @@ public class Cylinder extends VolumeShape {
 
   @Override
   public String toString() {
-    return "Cylinder { base_radius = " + Double.toString(getBaseRadius()) +
-      ", height = " + Double.toString(getHeight()) + ", " + super.toString() + "}";
+    return "Cylinder {baseRadius = " + DECIMAL_FORMAT.format(getBaseRadius()) +
+      ", height = " + DECIMAL_FORMAT.format(getHeight()) + ", " + super.toString() + "}";
   }
 
   @Override

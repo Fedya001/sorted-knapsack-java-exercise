@@ -2,6 +2,7 @@ package com.fedya.knapsack;
 
 import com.fedya.exception.KnapsackOverflowException;
 import com.fedya.shape.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +38,10 @@ public class SortedKnapsack {
       throw new KnapsackOverflowException(shape);
     }
   }
+  public void removeShape(VolumeShape shape) {
+    occupiedVolume -= shape.getVolume();
+    shapes.remove(shape);
+  }
 
   public List<VolumeShape> asList() {
     if (!isSorted) {
@@ -56,5 +61,10 @@ public class SortedKnapsack {
     }
 
     return buffer.append(']').toString();
+  }
+
+  public String getHtmlVolumeDescription() {
+    return "<html>Available volume = " + availableVolume +
+      "<br/>Occupied volume = " + new DecimalFormat("#.##").format(occupiedVolume) + "</html>";
   }
 }
