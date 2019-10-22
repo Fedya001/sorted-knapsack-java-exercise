@@ -39,6 +39,7 @@ public class SortedKnapsack {
     }
   }
   public void removeShape(VolumeShape shape) {
+    occupiedVolume -= shape.getVolume();
     shapes.remove(shape);
   }
 
